@@ -186,7 +186,7 @@ namespace Экзамен_WPF
 
         private void lvProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
             //UpdateWindow updateWindow = new UpdateWindow();
             //updateWindow.ShowDialog();
         }
