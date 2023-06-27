@@ -23,9 +23,9 @@
             <Label Content="Product"></Label>
             <TextBox Name="tbProduct"></TextBox>
             <Label Content="Manufacturer"></Label>
-            <ComboBox Name="cbManufacturer" DisplayMemberPath="id"></ComboBox>
+            <ComboBox Name="cbManufacturer" DisplayMemberPath="id" SelectionChanged="cbManufacturer_SelectionChanged"></ComboBox>
             <Label Content="Category"></Label>
-            <ComboBox Name="cbCategory" DisplayMemberPath="NameCategory"></ComboBox>
+            <ComboBox Name="cbCategory" DisplayMemberPath="NameCategory" SelectionChanged="cbCategory_SelectionChanged"></ComboBox>
             <Label Content="Сортировка"></Label>
             <ComboBox Name="cbSort"
                   SelectedItem="{Binding SelectedSortDescription}"

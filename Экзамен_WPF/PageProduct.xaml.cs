@@ -44,12 +44,12 @@ namespace Экзамен_WPF
             if (view == null) { return; }
             view.SortDescriptions.Add(new SortDescription("id", ListSortDirection.Ascending));
 
-            view.Filter = o =>
-            {
-                if (String.IsNullOrEmpty(filter.Text))
-                    return true;
-                return ((o as ClassProduct).productname.IndexOf(filter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
-            };
+            //view.Filter = o =>
+            //{
+            //    if (String.IsNullOrEmpty(filter.Text))
+            //        return true;
+            //    return ((o as ClassProduct).productname.IndexOf(filter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            //};
 
             SortDescriptions = new List<SortItem>()
             {
@@ -67,6 +67,50 @@ namespace Экзамен_WPF
 
             DataContext = this;
         }
+
+        public void Filter()
+        {
+            var selectedManufacturer = cbManufacturer.SelectedItem as ClassManufacturer;
+            var selectedCategory = cbCategory.SelectedItem as ClassCategory;
+            string searchText = filter.Text.Trim();
+            var view = CollectionViewSource.GetDefaultView(lvProducts.ItemsSource);
+
+            view.Filter = o =>
+            {
+                ClassProduct product = o as ClassProduct;
+                if (product == null)
+                    return false;
+
+                bool isVisible = true;
+
+                if (searchText.Length > 0)
+                {
+                    isVisible = product.manufacturer.ToString().IndexOf(searchText, StringComparison.OrdinalIgnoreCase) != -1;
+                }
+
+                if (selectedManufacturer != null)
+                {
+                    isVisible = isVisible && product.manufacturer == selectedManufacturer.id;
+                }
+
+                if (searchText.Length > 0)
+                {
+                    isVisible = product.Category.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) != -1;
+                }
+
+                if (selectedCategory != null)
+                {
+                    isVisible = isVisible && product.Category == selectedCategory.NameCategory;
+                }
+
+                return isVisible;
+            };
+            //if (String.IsNullOrEmpty(filter.Text))
+            //    return true;
+            //return ((o as ClassProduct).productname.IndexOf(filter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+        
+
 
         public void BindingListForm()
         {
@@ -149,7 +193,19 @@ namespace Экзамен_WPF
 
         private void filter_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CollectionViewSource.GetDefaultView(lvProducts.ItemsSource).Refresh();
+            //CollectionViewSource.GetDefaultView(lvProducts.ItemsSource).Refresh();
+            Filter();
+        }
+
+        private void cbManufacturer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+            //CollectionViewSource.GetDefaultView(lvProducts.ItemsSource).Refresh();
+        }
+
+        private void cbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
         }
     }
 }
