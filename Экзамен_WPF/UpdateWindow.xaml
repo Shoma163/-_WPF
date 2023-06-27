@@ -1,0 +1,24 @@
+﻿<Window x:Class="Экзамен_WPF.UpdateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Экзамен_WPF"
+        mc:Ignorable="d"
+        Title="UpdateWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="10">
+
+            <Label Content="Product"></Label>
+            <TextBox Name="tbProduct"></TextBox>
+            <Label Content="Manufacturer"></Label>
+            <ComboBox Name="cbManufacturer" DisplayMemberPath="id"></ComboBox>
+            <Label Content="Category"></Label>
+            <ComboBox Name="cbCategory" DisplayMemberPath="NameCategory"></ComboBox>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,42 @@
+﻿<Page x:Class="Экзамен_WPF.PageProduct"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Экзамен_WPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageProduct">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <ListView Grid.Column="0" Name="lvProducts"
+                  ItemTemplate="{StaticResource lvProducts}" 
+                  SelectionChanged="lvProducts_SelectionChanged"
+                  HorizontalContentAlignment="Stretch"></ListView>
+
+        <StackPanel Grid.Column="1" Margin="10">
+            <Label Content="Product"></Label>
+            <TextBox Name="tbProduct"></TextBox>
+            <Label Content="Manufacturer"></Label>
+            <ComboBox Name="cbManufacturer" DisplayMemberPath="id"></ComboBox>
+            <Label Content="Category"></Label>
+            <ComboBox Name="cbCategory" DisplayMemberPath="NameCategory"></ComboBox>
+            <Label Content="Сортировка"></Label>
+            <ComboBox Name="cbSort"
+                  SelectedItem="{Binding SelectedSortDescription}"
+                  ItemsSource="{Binding SortDescriptions}"
+                  DisplayMemberPath="Name"
+                  SelectionChanged="cbSort_SelectionChanged"></ComboBox>
+            <Label>Фильтр</Label>
+            <TextBox Name="filter" TextChanged="filter_TextChanged"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1" VerticalAlignment="Bottom" Margin="10">
+            <Button Content="Add" Click="Button_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Page>
