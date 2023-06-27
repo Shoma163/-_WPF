@@ -186,9 +186,12 @@ namespace Экзамен_WPF
 
         private void lvProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            //UpdateWindow updateWindow = new UpdateWindow();
-            //updateWindow.ShowDialog();
+            UpdateWindow updateWindow = new UpdateWindow();
+            ClassProduct item = lvProducts.SelectedItem as ClassProduct;
+            updateWindow.tbProduct.Text = item.productname;
+            updateWindow.cbManufacturer.Text = item.manufacturer.ToString();
+            updateWindow.cbCategory.Text = item.Category;
+            updateWindow.ShowDialog();
         }
 
         private void filter_TextChanged(object sender, TextChangedEventArgs e)

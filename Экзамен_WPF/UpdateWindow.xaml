@@ -20,5 +20,10 @@
             <Label Content="Category"></Label>
             <ComboBox Name="cbCategory" DisplayMemberPath="NameCategory"></ComboBox>
         </StackPanel>
+        <StackPanel VerticalAlignment="Bottom">
+            <Button Content="Сохранить" Click="Save"></Button>
+            <Button Content="Удалить" Click="Delete"></Button>
+            <Button Content="Отменить" Click="Cancel"></Button>
+        </StackPanel>
     </Grid>
 </Window>
